@@ -71,11 +71,11 @@ export function LogoUpload({ logoImage, logoSize, onLogoChange, onLogoSizeChange
                             />
                             <div className="flex-1">
                                 <p className="text-sm font-medium">Logo uploaded</p>
-                                <p className="text-xs text-gray-500">Ready to embed in QR code</p>
+                                <p className="text-xs text-gray-500 max-sm:hidden">Ready to embed in QR code</p>
                             </div>
                             <Button variant="outline" size="sm" onClick={removeImage} className="gap-1">
                                 <X className="h-3 w-3" />
-                                Remove
+                                <span className="max-sm:hidden">Remove</span>
                             </Button>
                         </div>
                     </div>
