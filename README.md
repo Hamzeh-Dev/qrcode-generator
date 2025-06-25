@@ -2,8 +2,6 @@
 
 A modern, feature-rich QR code generator built with Next.js, React, and TypeScript. Create professional QR codes with custom logos, titles, and branding in seconds.
 
-![QR Code Generator Preview](https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=400&fit=crop&crop=entropy&auto=format&q=80)
-
 ## ✨ Features
 
 ### 🎨 **Customization**
