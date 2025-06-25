@@ -20,7 +20,7 @@ export function TextInput({
                 placeholder="Enter text, URL, email, phone number, or any data..."
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="min-h-[100px] resize-none"
+                className="max-sm:max-w-[280px] min-h-[100px] resize-none whitespace-pre-wrap break-words"
             />
         </div>
     )

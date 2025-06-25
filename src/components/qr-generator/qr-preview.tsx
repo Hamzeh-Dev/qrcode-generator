@@ -15,6 +15,11 @@ interface QRPreviewProps {
 export const QRPreview = forwardRef<HTMLDivElement, QRPreviewProps>(({ settings, onDownload }, ref) => {
     const { text, size, bgColor, fgColor, errorLevel, logoImage, logoSize } = settings;
 
+    const qrMaxSize = Math.min(size[0], 300);
+    const responsiveSize = typeof window !== "undefined"
+    ? Math.min(window.innerWidth * 0.76, qrMaxSize)
+    : qrMaxSize;
+
     return (
         <Card>
             <CardHeader>
@@ -25,16 +30,16 @@ export const QRPreview = forwardRef<HTMLDivElement, QRPreviewProps>(({ settings,
                 </CardDescription>
             </CardHeader>
 
-            <CardContent>
-                <div className="flex flex-col items-center space-y-6">
+            <CardContent className="max-w-[90vw]">
+                <div className="w-full flex flex-col items-center space-y-6">
                     {text.trim() ? (
                         <>
-                            <div className="relative">
-                                <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-dashed border-gray-200">
+                            <div className="relative flex justify-center">
+                                <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-dashed border-gray-200 max-w-[80vw] sm:max-w-[300px]">
                                     <div ref={ref} className="flex flex-col items-center">
                                         <QRCodeSVG
                                             value={text}
-                                            size={Math.min(size[0], 300)}
+                                            size={responsiveSize}
                                             bgColor={bgColor}
                                             fgColor={fgColor}
                                             level={errorLevel as "L" | "M" | "Q" | "H"}
