@@ -7,12 +7,14 @@ export interface QRCodeSettingsProps {
     errorLevel: string,
     logoImage: string,
     logoSize: number[],
+    title: string,
 }
 
 export interface QuickTemplate {
     icon: React.ComponentType<{ className?: string}>,
     label: string,
     placeholder: string,
+    note: string,
 }
 
 export interface CustomizationOptionsProps {

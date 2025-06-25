@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { X, ImageIcon } from "lucide-react";
 import { LogoUploadProps } from "@/lib/types/qr-generator";
+import Image from "next/image";
 
 export function LogoUpload({ logoImage, logoSize, onLogoChange, onLogoSizeChange }: LogoUploadProps) {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -61,9 +62,11 @@ export function LogoUpload({ logoImage, logoSize, onLogoChange, onLogoSizeChange
                 <div className="relative">
                     <div className="border rounded-lg p-4 bg-gray-50">
                         <div className="flex items-center gap-3">
-                            <img
+                            <Image
                                 src={logoImage || "/placeholder.svg"}
                                 alt="Logo preview"
+                                width={48}
+                                height={48}
                                 className="w-12 h-12 object-cover rounded border"
                             />
                             <div className="flex-1">

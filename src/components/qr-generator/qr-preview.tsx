@@ -30,24 +30,41 @@ export const QRPreview = forwardRef<HTMLDivElement, QRPreviewProps>(({ settings,
                     {text.trim() ? (
                         <>
                             <div className="relative">
-                                <div ref={ref} className="p-6 bg-white rounded-lg shadow-sm border-2 border-dashed border-gray-200">
-                                    <QRCodeSVG
-                                        value={text}
-                                        size={Math.min(size[0], 300)}
-                                        bgColor={bgColor}
-                                        fgColor={fgColor}
-                                        level={errorLevel as "L" | "M" | "Q" | "H"}
-                                        includeMargin={true}
-                                        imageSettings={logoImage ? {
-                                            src: logoImage,
-                                            x: undefined,
-                                            y: undefined,
-                                            height: (Math.min(size[0], 300) * logoSize[0]) / 100,
-                                            width: (Math.min(size[0], 300) * logoSize[0]) / 100,
-                                            opacity: 1,
-                                            excavate: true,
-                                        } : undefined}
-                                    />
+                                <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-dashed border-gray-200">
+                                    <div ref={ref} className="flex flex-col items-center">
+                                        <QRCodeSVG
+                                            value={text}
+                                            size={Math.min(size[0], 300)}
+                                            bgColor={bgColor}
+                                            fgColor={fgColor}
+                                            level={errorLevel as "L" | "M" | "Q" | "H"}
+                                            includeMargin={true}
+                                            imageSettings={logoImage ? {
+                                                src: logoImage,
+                                                x: undefined,
+                                                y: undefined,
+                                                height: (Math.min(size[0], 300) * logoSize[0]) / 100,
+                                                width: (Math.min(size[0], 300) * logoSize[0]) / 100,
+                                                opacity: 1,
+                                                excavate: true,
+                                            } : undefined}
+                                        />
+
+                                        {settings.title.trim() && (
+                                            <div className="mt-4 text-center">
+                                                <p
+                                                    className="font-bold text-lg"
+                                                    style={{
+                                                        color: fgColor,
+                                                        fontSize: `${Math.min(size[0], 300) * 0.08}px`,
+                                                        maxWidth: `${Math.min(size[0], 300)}px`,
+                                                    }}
+                                                >
+                                                    {settings.title}
+                                                </p>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
 

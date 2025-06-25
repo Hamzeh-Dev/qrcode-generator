@@ -5,7 +5,7 @@ import { InputSection } from "@/components/qr-generator/input-section";
 import { QRPreview } from "@/components/qr-generator/qr-preview";
 
 export default function QRCodeGenerator() {
-    const { settings, updateSettings, downloadQRCode, qrRef, canvasRef } = useQRGenerator()
+    const { settings, updateSettings, downloadQRCode, qrRef, canvasRef } = useQRGenerator();
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">

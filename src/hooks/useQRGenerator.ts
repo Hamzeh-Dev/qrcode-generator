@@ -2,8 +2,6 @@
 
 import { QRCodeSettingsProps } from "@/lib/types/qr-generator";
 import { useCallback, useRef, useState } from "react";
-import { blob } from "stream/consumers";
-
 
 export function useQRGenerator() {
     const [settings, setSettings] = useState<QRCodeSettingsProps>({
@@ -14,6 +12,7 @@ export function useQRGenerator() {
         errorLevel: "M",
         logoImage: "",
         logoSize: [0],
+        title: "",
     });
 
     const qrRef = useRef<HTMLDivElement>(null);
@@ -30,8 +29,11 @@ export function useQRGenerator() {
         const ctx = canvas?.getContext("2d");
         if (!canvas || !ctx) return;
 
+        const titleHeight = settings.title.trim() ? 60 : 0;
+        const totalHeight = settings.size[0] + titleHeight;
+
         canvas.width = settings.size[0];
-        canvas.height = settings.size[0];
+        canvas.height = totalHeight;
 
         const svg = qrRef.current?.querySelector("svg");
         if (!svg) return;
@@ -44,8 +46,18 @@ export function useQRGenerator() {
         qrImg.crossOrigin = "anonymous";
         qrImg.onload = () => {
             ctx.fillStyle = settings.bgColor;
-            ctx.fillRect(0, 0, settings.size[0], settings.size[0]);
+            ctx.fillRect(0, 0, settings.size[0], totalHeight);
             ctx.drawImage(qrImg, 0, 0, settings.size[0], settings.size[0]);
+
+            if (settings.title.trim()) {
+                ctx.fillStyle = settings.fgColor;
+                ctx.font = "bold 24px Arial, sans-serif";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+
+                const titleY = settings.size[0] + titleHeight / 2;
+                ctx.fillText(settings.title, settings.size[0] / 2, titleY);
+            }
 
             canvas.toBlob((blob) => {
                 if (blob) {
@@ -60,7 +72,7 @@ export function useQRGenerator() {
                 }
             }, "image/png");
         }
-        qrImg.src = svgUrl
+        qrImg.src = svgUrl;
     }, [settings]);
 
     return {
