@@ -10,10 +10,10 @@ interface TextInputProps {
 
 export function TextInput({
     value,
-    onChange
+    onChange,
 }: TextInputProps) {
     return (
-        <div>
+        <div className="space-y-2">
             <Label htmlFor="qr-text">Text or URL</Label>
             <Textarea
                 id="qr-text"

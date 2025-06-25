@@ -5,7 +5,8 @@ import { QuickTemplates } from "./quick-templates";
 import { TextInput } from "./text-input";
 import { LogoUpload } from "./logo-upload";
 import { CustomizationOptions } from "./customization-options";
-import type { InputSectionProps, QRCodeSettingsProps } from "@/lib/types/qr-generator";
+import type { InputSectionProps } from "@/lib/types/qr-generator";
+import { TitleInput } from "./title-input";
 
 export function InputSection({ settings, onSettingsChange }: InputSectionProps) {
     return (
@@ -18,6 +19,8 @@ export function InputSection({ settings, onSettingsChange }: InputSectionProps) 
                 <QuickTemplates onTemplateSelect={(text) => onSettingsChange({ text })} />
 
                 <TextInput value={settings.text} onChange={(text) => onSettingsChange({ text })} />
+
+                <TitleInput value={settings.title} onChange={(title) => onSettingsChange({ title })} />
 
                 <LogoUpload
                     logoImage={settings.logoImage}
